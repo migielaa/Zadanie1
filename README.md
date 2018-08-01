@@ -1,2 +1,2 @@
 # Zadanie1
-Zadanie na ttai
+Zadanie na TTAI
