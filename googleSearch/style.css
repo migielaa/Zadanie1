@@ -1,0 +1,59 @@
+body{
+	margin: 0 0 10px 0 !important;
+	font: 16px arial, sans-serif;
+}
+button{
+	font-size: 20px;
+}
+input{
+	font-size: 20px;
+	height: 1.5em;
+	padding: 3px 0;
+	margin: 0 10px;
+	border: none;
+	width: 523px;
+}
+input:focus{
+	outline: none;
+}
+.title{
+	color: blue;
+	padding: 2px;
+}
+.url{
+	color: green;
+}
+.snippet{
+	margin-bottom: 30px;
+}
+#wyniki{
+	margin: 40px 0 0 190px;
+}
+#pages{
+	margin-left: 190px;
+}
+#logo{
+	max-width: 150px;
+	height: auto;
+}
+#wej{
+	width: 650px;
+	background-color: white;
+	text-align: right;
+	padding-right: 5px;
+	margin-left: 10px;
+}
+#wej > img{
+	margin-right: 15px;
+}
+#wej button{
+	background-color: white;
+	border: none;
+}
+#gora{
+	background-color: #fafafa;
+	padding: 30px 0 10px 30px;
+	border-bottom: 2px solid lightgrey;
+	display: flex;
+	align-items: center;
+}

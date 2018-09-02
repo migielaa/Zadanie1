@@ -1,0 +1,61 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="style.css">
+	</head>
+	<body onkeypress="submit(event)">
+		<div id="gora">
+			<img id="logo" src="logo.png">
+			<div id="wej">
+				<input id="query">
+				<img src="klaw.png">
+				<img src="mic.png">
+				<button type="button" onclick="search()"><img src="lupka.png"></button>
+			</div>
+		</div>
+		<div id="wyniki">
+		</div>
+		<div id="pages">
+			<button id="perv" type="button" onclick="pervPage()" style="display: none;">previous page</button>
+			<button id="next" type="button" onclick="nextPage()" style="display: none;">next page</button>
+		</div>
+		<script>
+			function submit(event){
+				if (event.which == 13 || event.keyCode == 13) {
+					search();
+			    }
+			}
+			var start = 1;
+			function nextPage(){
+				start+=10;
+				search();
+			}
+			function pervPage(){
+				start-=10;
+				search();
+			}
+			function search() {
+				var xhttp = new XMLHttpRequest();
+				xhttp.onreadystatechange = function() {
+					if (this.readyState == 4 && this.status == 200) {
+						window.scrollTo(0, 0);
+						if(start==1)
+							document.getElementById('perv').style.display = 'none';
+						if(start>=11)
+							document.getElementById('perv').style.display = 'inline';
+						document.getElementById('next').style.display = 'inline';
+						document.getElementById('wyniki').innerHTML = '';
+						const items = JSON.parse(this.responseText).items;
+						items.forEach(function(o){
+							document.getElementById('wyniki').innerHTML += '<div class="title"><a href="'+ o.formattedUrl +'">'+o.htmlTitle+'</a></div><div class="url">' + o.htmlFormattedUrl + '</div><div class="snippet">' + o.htmlSnippet + '</div>';
+						})
+					}
+				};
+				var q = document.getElementById('query').value;
+				if(q.length == 0) return;
+				xhttp.open("GET", 'https://www.googleapis.com/customsearch/v1?q='+ q +'&cx=005675334990804326891%3Aay3b_mkorvw&start=' + start + '&key=AIzaSyCgXnTXqCnlpgEdf1TbFJYNetKT9Icx4PU', true);
+				xhttp.send();
+			}
+		</script>
+	</body>
+</html>
