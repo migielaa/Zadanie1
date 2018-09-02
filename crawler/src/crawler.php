@@ -20,9 +20,11 @@ echo "          <input type=\"text\" class=\"data-input\" name=\"url\" value=$ur
 echo "          <input type=\"submit\" class=\"submit-button\" name=\"submit\" value=\"CRAWL!\">";
 echo "    </form>";
 echo "   </div>";
-
-echo "    <script src=\"app/main.js\"></script>";
-
+echo "   <script>";
+echo "   function changeBackground(elmnt,clr) {";
+echo "       elmnt.style.background = clr;";
+echo "   }";
+echo "   </script>";
 function insertIntoSiteToView($url)
 {
     return "INSERT INTO sites_to_view (LINK_NAME) VALUES ('$url')";
@@ -68,7 +70,7 @@ function crawler($url)
 
     foreach ($values as $link) {
         if ($link !== '') {
-            echo "<div class=\"result\" onclick=\"crawlOnUrlClick(this)\">'$link'</div>";
+            echo "<div class=\"result\" onclik=\"changeBackground(this,#88888B)\"><a href='$link'>'$link'</a> </div>";
 
             if (!in_array($link, $sites_to_view)) {
 
@@ -81,6 +83,8 @@ function crawler($url)
     closeConnection($conn);
 
 }
+
+
 
 function getPageContent($url)
 {
